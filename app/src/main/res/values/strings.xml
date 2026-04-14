@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">WeatherAppTask</string>
+    <string name="search_screen_header">Pogoda</string>
+    <string name="search_screen_text_field_header">Wyszukaj miasto</string>
+    <string name="search_screen_history">Historia wyszukiwania</string>
+
+    <string name="details_screen_header">Szczegóły pogody</string>
+    <string name="details_screen_back_button">Wróć</string>
+    <string name="details_screen_humidity">Wilgotność: %1$s</string>
+    <string name="details_screen_cloudy">Zachmurzenie: %1$s</string>
+    <string name="details_screen_rainfall">Opady: %1$s</string>
+    <string name="details_screen_next_days_forecast">Prognoza 5-dniowa</string>
+
+    <string name="common_yes">Tak</string>
+    <string name="common_no">Nie</string>
+    <string name="common_dash">-</string>
+</resources>
