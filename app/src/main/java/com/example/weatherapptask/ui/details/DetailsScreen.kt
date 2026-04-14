@@ -156,7 +156,7 @@ fun DetailsScreenContent(
 }
 
 @Composable
-private fun temperatureColor(tempCelsius: Double): Color {
+fun temperatureColor(tempCelsius: Double): Color {
     return when {
         tempCelsius < 10 -> Color.Blue
         tempCelsius <= 20 -> Color.Black

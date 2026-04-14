@@ -40,7 +40,7 @@ class DetailsViewModel @Inject constructor(
             }.onSuccess {
                 _uiState.value = DetailsUiState(isLoading = false, data = it)
             }.onFailure {
-                _uiState.value = DetailsUiState(isLoading = false, error = it.message)
+                _uiState.value = DetailsUiState(isLoading = false, error = it.message ?: "Unknown error")
             }
         }
     }

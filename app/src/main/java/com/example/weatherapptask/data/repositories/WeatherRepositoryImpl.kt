@@ -42,7 +42,6 @@ class WeatherRepositoryImpl @Inject constructor(
         val forecast = api.getFiveDayForecast(city.key)
 
 
-
         WeatherDetails(
             cityName = city.fullDisplayName,
             temperatureCelsius = current.temperature.metric.value,

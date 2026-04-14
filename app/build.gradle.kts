@@ -63,6 +63,9 @@ android {
 }
 
 dependencies {
+    testImplementation("io.mockk:mockk:1.14.9")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
+    testImplementation("app.cash.turbine:turbine:1.2.1")
     implementation("com.squareup.moshi:moshi-kotlin:1.15.2")
     ksp("com.squareup.moshi:moshi-kotlin-codegen:1.15.2")
     implementation("androidx.compose.material:material-icons-extended:1.7.8")
