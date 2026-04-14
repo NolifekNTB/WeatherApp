@@ -1,6 +1,8 @@
 package com.example.weatherapptask.data.repositories
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.example.weatherapptask.data.local.dao.SearchHistoryDao
 import com.example.weatherapptask.data.local.entities.SearchHistoryEntity
 import com.example.weatherapptask.data.remote.AccuWeatherApi
@@ -13,6 +15,9 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(
@@ -31,9 +36,12 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun getWeatherDetails(city: CitySuggestion): WeatherDetails = withContext(ioDispatcher) {
         val current = api.getCurrentConditions(city.key).first()
         val forecast = api.getFiveDayForecast(city.key)
+
+
 
         WeatherDetails(
             cityName = city.fullDisplayName,
@@ -46,7 +54,7 @@ class WeatherRepositoryImpl @Inject constructor(
             headline = forecast.headline.text,
             forecast = forecast.dailyForecasts.map {
                 DailyForecast(
-                    date = it.date,
+                    date = it.date.normalizedDateFormat(),
                     minTemp = it.temperature.minimum.value,
                     maxTemp = it.temperature.maximum.value,
                     dayPhrase = it.day.iconPhrase,
@@ -82,5 +90,11 @@ class WeatherRepositoryImpl @Inject constructor(
             )
         )
         dao.trimToLastTen()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun String.normalizedDateFormat(): String {
+        val format = DateTimeFormatter.ISO_OFFSET_DATE_TIME
+        return LocalDateTime.parse(this, format).toLocalDate().toString()
     }
 }

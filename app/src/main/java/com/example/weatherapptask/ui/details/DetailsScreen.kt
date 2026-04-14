@@ -144,8 +144,8 @@ fun DetailsScreenContent(
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 Text(day.date, style = MaterialTheme.typography.titleSmall)
-                                Text("MaxTemp ${day.maxTemp}°", style = MaterialTheme.typography.titleSmall)
-                                Text("MinTemp ${day.minTemp}°", style = MaterialTheme.typography.titleSmall)
+                                Text("MaxTemp ${day.maxTemp}°C", style = MaterialTheme.typography.titleSmall)
+                                Text("MinTemp ${day.minTemp}°C", style = MaterialTheme.typography.titleSmall)
                             }
                         }
                     }
