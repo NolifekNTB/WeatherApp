@@ -40,7 +40,11 @@ Focus: **correct state management, scalable architecture, and production-ready p
 
 ## 🔄 Data Flow
 
+<img src="dataFlow.png" width="800"/>
+
 ## 🧩 Layers
+
+<img src="layers.png" width="800"/>
 
 ## 📂 Project Structure
 
