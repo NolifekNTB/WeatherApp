@@ -65,17 +65,18 @@ data/
  ├── repository/
 
 di/
+```
 
 ## ⚙️ Setup
 
 1. Get API key from AccuWeather  
 2. Add to `local.properties`:
 
+```properties
 ACCUWEATHER_API_KEY=your_key
+```
 
 3. Sync & run
-```
----
 
 ## 🧪 Testing
 
