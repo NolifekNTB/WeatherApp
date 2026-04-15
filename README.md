@@ -82,7 +82,6 @@ ACCUWEATHER_API_KEY=your_key
 
 - Unit tests (UseCases, ViewModels, Repository)  
 - UI tests (Compose)  
-- Flow testing with Turbine  
 - Coroutine testing with TestDispatcher  
 
 **Focus:**

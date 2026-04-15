@@ -7,6 +7,7 @@ import com.example.weatherapptask.data.remote.dto.AdministrativeAreaDto
 import com.example.weatherapptask.data.remote.dto.CitySuggestionDto
 import com.example.weatherapptask.data.remote.dto.CountryDto
 import com.example.weatherapptask.data.repositories.WeatherRepositoryImpl
+import com.example.weatherapptask.domain.formatter.DateFormatter
 import com.example.weatherapptask.domain.model.CitySuggestion
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -25,10 +26,12 @@ class WeatherRepositoryImplTest {
 
     private val api = mockk<AccuWeatherApi>()
     private val dao = mockk<SearchHistoryDao>(relaxed = true)
+    private val formatter = mockk<DateFormatter>()
 
     private val repository = WeatherRepositoryImpl(
         api,
         dao,
+        formatter,
         dispatcherRule.dispatcher
     )
 
