@@ -46,6 +46,7 @@ Focus: **correct state management, scalable architecture, and production-ready p
 
 <img src="layers.png" width="800"/>
 
+
 ## 📂 Project Structure
 
 ```text
@@ -87,7 +88,32 @@ ACCUWEATHER_API_KEY=your_key
 **Focus:**
 - validation logic  
 - state transitions  
-- error handling  
+- error handling
+
+---
+
+ ## 🔄 CI / CD
+
+This project uses **GitHub Actions** for Continuous Integration.
+
+### What runs on every push / pull request
+
+- 🔨 Build (`assembleDebug`)
+- 🧪 Unit tests (`testDebugUnitTest`)
+- 🔍 Lint checks (`lintDebug`)
+
+### Workflow
+
+```mermaid
+flowchart LR
+
+A[Push / Pull Request] --> B[Checkout Code]
+B --> C[Setup JDK 17]
+C --> D[Build App]
+D --> E[Run Unit Tests]
+E --> F[Run Lint]
+F --> G[Result: Pass / Fail]
+```
 
 ---
 
