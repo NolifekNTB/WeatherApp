@@ -1,12 +1,10 @@
 package com.example.weatherapptask.data.repositories
 
-import android.os.Build
-import android.util.Log
-import androidx.annotation.RequiresApi
 import com.example.weatherapptask.data.local.dao.SearchHistoryDao
 import com.example.weatherapptask.data.local.entities.SearchHistoryEntity
 import com.example.weatherapptask.data.remote.AccuWeatherApi
 import com.example.weatherapptask.di.IoDispatcher
+import com.example.weatherapptask.domain.formatter.DateFormatter
 import com.example.weatherapptask.domain.model.CitySuggestion
 import com.example.weatherapptask.domain.model.DailyForecast
 import com.example.weatherapptask.domain.model.WeatherDetails
@@ -23,6 +21,7 @@ import javax.inject.Inject
 class WeatherRepositoryImpl @Inject constructor(
     private val api: AccuWeatherApi,
     private val dao: SearchHistoryDao,
+    private val formatter: DateFormatter,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : WeatherRepository {
     override suspend fun searchCities(query: String): List<CitySuggestion> = withContext(ioDispatcher) {
@@ -36,7 +35,6 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun getWeatherDetails(city: CitySuggestion): WeatherDetails = withContext(ioDispatcher) {
         val current = api.getCurrentConditions(city.key).first()
         val forecast = api.getFiveDayForecast(city.key)
@@ -53,7 +51,7 @@ class WeatherRepositoryImpl @Inject constructor(
             headline = forecast.headline.text,
             forecast = forecast.dailyForecasts.map {
                 DailyForecast(
-                    date = it.date.normalizedDateFormat(),
+                    date = formatter.format(it.date),
                     minTemp = it.temperature.minimum.value,
                     maxTemp = it.temperature.maximum.value,
                     dayPhrase = it.day.iconPhrase,
@@ -89,11 +87,5 @@ class WeatherRepositoryImpl @Inject constructor(
             )
         )
         dao.trimToLastTen()
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun String.normalizedDateFormat(): String {
-        val format = DateTimeFormatter.ISO_OFFSET_DATE_TIME
-        return LocalDateTime.parse(this, format).toLocalDate().toString()
     }
 }

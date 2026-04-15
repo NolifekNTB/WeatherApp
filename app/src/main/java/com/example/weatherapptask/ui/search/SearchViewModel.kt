@@ -2,6 +2,7 @@ package com.example.weatherapptask.ui.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.weatherapptask.domain.formatter.DateFormatter
 import com.example.weatherapptask.domain.model.CitySuggestion
 import com.example.weatherapptask.domain.usecase.ObserveSearchHistoryUseCase
 import com.example.weatherapptask.domain.usecase.SaveSearchQueryUseCase
